@@ -1,0 +1,15 @@
+defscrollback 5000
+defnonblock 5
+#setenv SSH_AUTH_SOCK "$HOME/.authsock"
+altscreen on
+term screen-256color
+bind ',' prev
+bind '.' next
+vbell_msg "beep"
+startup_message off
+#caption always "%{= Wk}%-w%{= KW}%f%n %t%{-}%+w"
+#hardstatus off
+#change the hardstatus settings to give an window list at the bottom of the
+##screen, with the time and date and with the current window highlighted
+hardstatus alwayslastline
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
