@@ -3,7 +3,7 @@ defutf8 on
 screen
 utf8 on on
 defnonblock 5
-#setenv SSH_AUTH_SOCK "$HOME/.authsock"
+setenv SSH_AUTH_SOCK "$HOME/.authsock"
 altscreen on
 term screen-256color
 bind ',' prev
