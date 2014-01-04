@@ -1,5 +1,6 @@
 syntax on
-
+scriptencoding utf-8
+set encoding=utf-8
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
 
