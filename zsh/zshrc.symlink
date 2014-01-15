@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/local/heroku/bin:/home/ben/git/llvm32build/bin:/home/ben/git/emscripten/:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="$PATH:~/.cabal/bin:~/.xmonad/bin:$(ruby -e 'puts Gem.user_dir')/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
@@ -68,3 +68,9 @@ export PATH="/usr/local/heroku/bin:/home/ben/git/llvm32build/bin:/home/ben/git/e
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+# ssh/gpg agent
+if [ -f "${HOME}/.gpg-agent-info" ]; then
+  . "${HOME}/.gpg-agent-info"
+  export GPG_AGENT_INFO
+  export SSH_AUTH_SOCK
+fi

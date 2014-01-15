@@ -1,0 +1,79 @@
+! Xft settings
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+! urxvt
+URxvt*buffered: true
+URxvt*cursorBlink: true
+URxvt*underlineColor: yellow
+URxvt*font:  xft:Inconsolata for Powerline:size=14:antialias=true
+URxvt*depth: 32
+URxvt*borderless: 1
+URxvt*scrollBar: false
+URxvt*loginShell: true
+Urxvt*secondaryScroll:  true    # Enable Shift-PageUp/Down in screen
+URxvt*saveLines: 5000
+URxvt*termName: rxvt-unicode
+URxvt.perl-ext-common: default,matcher
+URxvt.urlLauncher: firefox
+URxvt.matcher.button: 1
+URxvt*keysym.Home: \033[1~
+URxvt*keysym.End: \033[4~
+
+#define base00 #1d1f21
+#define base01 #282a2e
+#define base02 #373b41
+#define base03 #969896
+#define base04 #b4b7b4
+#define base05 #c5c8c6
+#define base06 #e0e0e0
+#define base07 #ffffff
+#define base08 #cc6666
+#define base09 #de935f
+#define base0A #f0c674
+#define base0B #b5bd68
+#define base0C #8abeb7
+#define base0D #81a2be
+#define base0E #b294bb
+#define base0F #a3685a
+
+*background:            base00
+*foreground:            base05
+*cursorColor:           base05
+*pointerColorBackground:base01
+*pointerColorForeground:base0F
+
+!! black dark/light
+*color0:                base00
+*color8:                base03
+
+!! red dark/light
+*color1:                base08
+*color9:                base09
+
+!! green dark/light
+*color2:                base0B
+*color10:               base01
+
+!! yellow dark/light
+*color3:                base0A
+*color11:               base02
+
+!! blue dark/light
+*color4:                base0D
+*color12:               base04
+
+!! magenta dark/light
+*color5:                base0E
+*color13:               base06
+
+!! cyan dark/light
+*color6:                base0C
+*color14:               base0F
+
+!! white dark/light
+*color7:                base05
+*color15:               base07
