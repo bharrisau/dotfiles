@@ -52,7 +52,12 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:~/.cabal/bin:~/.xmonad/bin:$(ruby -e 'puts Gem.user_dir')/bin"
+PATH="$PATH:~/.cabal/bin:~/.xmonad/bin"
+if hash ruby &> /dev/null; then
+  PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
+fi
+
+export PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
