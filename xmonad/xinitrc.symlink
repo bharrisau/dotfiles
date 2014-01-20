@@ -15,6 +15,13 @@ xrdb -merge ~/.Xresources &
 # Set numlock
 numlockx &
 
+# Start polkit agent
+# /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+
+# Set ssh-agent key progam
+. ~/.xmonad/bin/ssh-agent.sh
+export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
+
 # Start the system tray
 trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16 &
 
@@ -25,8 +32,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-#firefox &
+# Start apps
 urxvt -e bash -c "tmux -q has-session && exec tmux attach-session -d || exec tmux new-session -n$USER -s$USER@$HOSTNAME" &
+chromium &
 
 # Start screensaver
 xscreensaver -no-splash &
@@ -35,7 +43,8 @@ xscreensaver -no-splash &
 pulseaudio --start &
 
 # Start redshift
-redshift -l -32.3:115.7 &
+# redshift -l -32.3:115.7 -t 6000:3700 &
+redshift-gtk &
 
 # Start WM
 exec xmonad

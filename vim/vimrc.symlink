@@ -1,11 +1,11 @@
-syntax on
+syntax enable
 scriptencoding utf-8
 set encoding=utf-8
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
 
 set background=dark
-colorscheme base16-tomorrow
+colorscheme solarized
 
 set hidden
 set listchars=tab:»\ ,eol:¬,trail:·
@@ -22,7 +22,7 @@ if has("autocmd")
   " Customisations based on house-style (arbitrary)
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
-  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
+  autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
    
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml

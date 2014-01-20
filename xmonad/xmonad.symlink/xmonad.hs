@@ -56,6 +56,7 @@ myManageHook = composeAll
     , resource  =? "desktop_window" --> doIgnore
     , className =? "Galculator"     --> doFloat
     , className =? "Steam"          --> doFloat
+    , className =? "Steam"          --> doShift "5:media"
     , className =? "Gimp"           --> doFloat
     , resource  =? "gpicview"       --> doFloat
     , className =? "MPlayer"        --> doFloat

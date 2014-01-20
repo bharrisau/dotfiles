@@ -52,7 +52,7 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-PATH="$PATH:~/.cabal/bin:~/.xmonad/bin"
+PATH="$PATH:~/.xmonad/bin"
 if hash ruby &> /dev/null; then
   PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 fi
@@ -73,9 +73,7 @@ export PATH
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# ssh/gpg agent
-if [ -f "${HOME}/.gpg-agent-info" ]; then
-  . "${HOME}/.gpg-agent-info"
-  export GPG_AGENT_INFO
-  export SSH_AUTH_SOCK
-fi
+# ssh agent
+#if [ -f "${HOME}/.ssh-agent-info" ]; then
+#  . "${HOME}/.ssh-agent-info"
+#fi
