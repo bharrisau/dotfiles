@@ -4,11 +4,13 @@
 
 import System.IO
 import System.Exit
+import Data.List (isPrefixOf, isInfixOf, isSuffixOf)
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spiral
@@ -20,6 +22,10 @@ import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
+(=^?), (=*?), (=$?) :: Query String -> String -> Query Bool
+q =^? x = fmap (isPrefixOf x) q
+q =*? x = fmap (isInfixOf x) q
+q =$? x = fmap (isSuffixOf x) q
 
 ------------------------------------------------------------------------
 -- Terminal
@@ -63,6 +69,7 @@ myManageHook = composeAll
     , className =? "VirtualBox"     --> doShift "4:vm"
     , className =? "Xchat"          --> doShift "5:media"
     , className =? "stalonetray"    --> doIgnore
+    , title =^? "code" --> doShift "3:code"
     , isFullscreen --> (doF W.focusDown <+> doFullFloat)]
 
 
@@ -140,16 +147,16 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask, xK_p),
      spawn ".xmonad/bin/yeganesh-run")
 
---   -- Take a screenshot in select mode.
---   -- After pressing this key binding, click a window, or draw a rectangle with
---   -- the mouse.
---   , ((modMask .|. shiftMask, xK_p),
---      spawn "select-screenshot")
--- 
---   -- Take full screenshot in multi-head mode.
---   -- That is, take a screenshot of everything you see.
---   , ((modMask .|. controlMask .|. shiftMask, xK_p),
---      spawn "screenshot")
+  -- Take a screenshot in select mode.
+  -- After pressing this key binding, click a window, or draw a rectangle with
+  -- the mouse.
+  , ((modMask .|. shiftMask, xK_p),
+     spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
+
+  -- Take full screenshot in multi-head mode.
+  -- That is, take a screenshot of everything you see.
+  , ((modMask .|. controlMask .|. shiftMask, xK_p),
+     spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1 -u")
 -- 
 --   -- Fetch a single use password.
 --   , ((modMask .|. shiftMask, xK_o),
@@ -165,6 +172,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
   -- Mute volume.
   , ((0, xF86XK_AudioMute),
+     spawn "amixer -q set Master toggle")
+  , ((modMask .|. shiftMask, xK_m),
      spawn "amixer -q set Master toggle")
 
   -- Decrease volume.
@@ -338,12 +347,13 @@ myStartupHook = return ()
 --
 main = do
   xmproc <- spawnPipe "xmobar ~/.xmobar/xmobar.hs"
-  xmonad $ defaults {
+  xmonad $ withUrgencyHook NoUrgencyHook $ defaults {
       logHook = dynamicLogWithPP $ xmobarPP {
             ppOutput = hPutStrLn xmproc
           , ppTitle = xmobarColor xmobarTitleColor "" . shorten 100
           , ppCurrent = xmobarColor xmobarCurrentWorkspaceColor ""
           , ppSep = "   "
+          , ppUrgent = xmobarColor "yellow" "red" . xmobarStrip
       }
       , manageHook = manageDocks <+> myManageHook
       , startupHook = setWMName "LG3D"

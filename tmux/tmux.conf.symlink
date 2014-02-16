@@ -8,6 +8,11 @@ set -g default-terminal "screen-256color"
 # set scrollback history to 10000 (10k)
 set -g history-limit 10000
 
+# bell setting
+set-option -g bell-action any
+set-option -g visual-bell off
+set-option -g bell-on-alert on
+
 # set Ctrl-a as the default prefix key combination
 # and unbind C-b to free it up
 set -g prefix C-a
@@ -25,6 +30,10 @@ setw -g pane-base-index 1
 
 # reload ~/.tmux.conf using PREFIX r
 bind r source-file ~/.tmux.conf \; display "Reloaded!"
+
+# Pass through window titles
+set-option -g set-titles on
+#set-option -g set-titles-string '#W'
 
 # use PREFIX | to split window horizontally and PREFIX - to split vertically
 bind | split-window -h
@@ -117,8 +126,8 @@ set -g status-justify centre           # center window list for clarity
 # set-option -g status-position top    # position the status bar at top of screen
 
 # visual notification of activity in other windows
-setw -g monitor-activity on
-set -g visual-activity on
+setw -g monitor-activity off
+#set -g visual-activity on
 
 # set color for status bar
 set-option -g status-bg black #base02

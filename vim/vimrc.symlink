@@ -1,3 +1,4 @@
+call pathogen#infect()
 syntax enable
 scriptencoding utf-8
 set encoding=utf-8
@@ -9,6 +10,8 @@ colorscheme solarized
 
 set hidden
 set listchars=tab:»\ ,eol:¬,trail:·
+set ts=2 sts=2 sw=2 expandtab
+set cc=78
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
@@ -23,6 +26,7 @@ if has("autocmd")
   autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType javascript setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType rust setlocal ts=4 sts=4 sw=4 expandtab
    
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml

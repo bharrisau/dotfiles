@@ -2,7 +2,7 @@ Config {
     font = "xft:Inconsolata for Powerline:size=10:antialias=true"
   , bgColor = "#1d1f21"
   , fgColor = "#c5c8c6"
-  , position = Static { xpos = 0 , ypos = -2, width = 1700, height = 16 }
+  , position = Static { xpos = 0 , ypos = -2, width = 1500, height = 16 }
   , lowerOnStart = True
   , commands = [
       Run MultiCpu ["-t", "Cpu: <total0>% <total1>% <total2>% <total3>%", "-L", "40", "-H", "60", "-l", "#c5c8c6", "-n", "#f0c674", "-h", "red"] 50
