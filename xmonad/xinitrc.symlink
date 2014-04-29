@@ -37,6 +37,7 @@ fi
 urxvt -t term -e bash -c "tmux new-session -A -n$USER -s$USER@$HOSTNAME" &
 urxvt -t code -e bash -c "tmux new-session -A -n$USER -scode" &
 chromium &
+workrave &
 
 # Start screensaver
 xscreensaver -no-splash &
