@@ -142,6 +142,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
   , ((modMask .|. controlMask, xK_l),
      spawn "xscreensaver-command -lock")
 
+  -- Hibernate the computer
+  , ((modMask .|. controlMask, xK_h),
+     spawn "systemctl hibernate")
+
   -- Launch dmenu via yeganesh.
   -- Use this to launch programs without a key binding.
   , ((modMask, xK_p),

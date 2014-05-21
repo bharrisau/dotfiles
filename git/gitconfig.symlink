@@ -25,6 +25,6 @@
 [difftool]
         prompt = false
 [help]
-        autocorrect = 1
+	autocorrect = 0
 [push]
         default = simple
