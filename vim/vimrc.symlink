@@ -5,6 +5,12 @@ set encoding=utf-8
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
 
+" Bad habits
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
 set background=dark
 colorscheme solarized
 
