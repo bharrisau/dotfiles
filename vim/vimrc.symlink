@@ -30,4 +30,6 @@ if has("autocmd")
    
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
+
+  autocmd BufNewFile,BufRead *.adoc setfiletype asciidoc
 endif

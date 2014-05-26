@@ -77,3 +77,6 @@ export PATH
 #if [ -f "${HOME}/.ssh-agent-info" ]; then
 #  . "${HOME}/.ssh-agent-info"
 #fi
+
+# added by travis gem
+[ -f /home/ben/.travis/travis.sh ] && source /home/ben/.travis/travis.sh
