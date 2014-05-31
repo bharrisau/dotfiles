@@ -13,6 +13,7 @@ noremap <Right> <NOP>
 
 set background=dark
 colorscheme solarized
+set spelllang=en_gb
 
 set hidden
 set listchars=tab:»\ ,eol:¬,trail:·
@@ -37,5 +38,9 @@ if has("autocmd")
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml
 
-  autocmd BufNewFile,BufRead *.adoc setfiletype asciidoc
+  autocmd BufRead,BufNewFile *.adoc,*.asciidoc,README,TODO,CHANGELOG,NOTES,ABOUT
+          \ setlocal autoindent expandtab tabstop=8 softtabstop=2 shiftwidth=2 filetype=asciidoc
+          \ textwidth=70 wrap formatoptions=tcqn spell
+          \ formatlistpat=^\\s*\\d\\+\\.\\s\\+\\\\|^\\s*<\\d\\+>\\s\\+\\\\|^\\s*[a-zA-Z.]\\.\\s\\+\\\\|^\\s*[ivxIVX]\\+\\.\\s\\+
+          \ comments=s1:/*,ex:*/,://,b:#,:%,:XCOMM,fb:-,fb:*,fb:+,fb:.,fb:>
 endif
