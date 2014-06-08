@@ -152,6 +152,7 @@ prompt_status() {
   [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
   [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
   [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
+  mail -e >/dev/null 2>&1 && symbols+="%{%F{green}%}✉"
 
   [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
 }
