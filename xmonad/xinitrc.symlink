@@ -8,6 +8,9 @@
 #PATH=$PATH:~/.cabal/bin:~/.xmonad/bin
 #export PATH
 
+# Temporary time zone
+# export TZ=/usr/share/zoneinfo/Australia/Darwin
+
 # Configure X
 xsetroot -cursor_name left_ptr &
 xrdb -merge ~/.Xresources &
@@ -24,7 +27,7 @@ numlockx &
 export SSH_ASKPASS=/usr/lib/ssh/x11-ssh-askpass
 
 # Start the system tray
-trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16 &
+#trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 6 --transparent true --alpha 0 --tint 0x000000 --height 16 &
 
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
   for f in /etc/X11/xinit/xinitrc.d/*; do
@@ -33,10 +36,13 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+# Start WM
+#exec i3
+
 # Start apps
-urxvt -t term -e bash -c "tmux new-session -A -n$USER -s$USER@$HOSTNAME" &
-urxvt -t code -e bash -c "tmux new-session -A -n$USER -scode" &
-chromium &
+#urxvt -t term -e bash -c "tmux new-session -A -n$USER -s$USER@$HOSTNAME" &
+#urxvt -t code -e bash -c "tmux new-session -A -n$USER -scode" &
+#chromium &
 workrave &
 
 # Start screensaver
@@ -50,4 +56,5 @@ pulseaudio --start &
 redshift-gtk &
 
 # Start WM
-exec xmonad
+exec i3
+#exec xmonad
