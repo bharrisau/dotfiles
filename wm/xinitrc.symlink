@@ -46,7 +46,7 @@ fi
 workrave &
 
 # Start screensaver
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 
 # Start sound server
 pulseaudio --start &
