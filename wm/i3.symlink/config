@@ -17,7 +17,15 @@ workspace_auto_back_and_forth yes
 exec --no-startup-id i3-msg 'workspace 1:Term; exec urxvt -e bash -c "tmux new-session -A -n$USER -s$USER@$HOSTNAME"'
 exec --no-startup-id i3-msg 'workspace 3:Code; exec urxvt -e bash -c "tmux new-session -A -n$USER -scode"'
 exec --no-startup-id i3-msg 'workspace 2:Web; exec firefox'
-exec xautolock -time 15 -locker i3lock
+exec xautolock -time 15 -locker xlock
+
+exec --no-startup-id todo
+
+# move this to scratchpad, if active
+for_window [class="URxvt" instance="scratchpad"] move scratchpad
+
+# windows that need to float
+for_window [class="Galculator"] floating enable
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
@@ -31,17 +39,17 @@ font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
 # Show the first scratchpad window
-bindsym $mod+minus scratchpad show
+bindsym $mod+q scratchpad show
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
+
+# screenshot
+bindsym $mod+Shift+p exec scrot ~/Pictures/screen_%Y-%m-%d-%H-%M-%S.png -d 1
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
@@ -108,7 +116,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+Shift+a focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1:Term
@@ -167,10 +175,10 @@ bindsym $mod+r mode "resize"
 
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
 mode "$mode_system" {
-    bindsym l exec --no-startup-id i3lock, mode "default"
+    bindsym l exec --no-startup-id xlock, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id i3-msg 'exec i3lock && exec systemctl suspend', mode "default"
-    bindsym h exec --no-startup-id i3-msg 'exec i3lock && exec systemctl hbernate', mode "default"
+    bindsym s exec --no-startup-id i3-msg 'exec xlock && exec systemctl suspend', mode "default"
+    bindsym h exec --no-startup-id i3-msg 'exec xlock && exec systemctl hbernate', mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"  
 

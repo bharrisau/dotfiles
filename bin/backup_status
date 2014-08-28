@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [[ $(find .cache/duplicity/usb_hdd -type f -mtime -5 | wc -l) -lt 1 ]]; then
+  echo Backup is overdue | mail -s Backup ben
+fi

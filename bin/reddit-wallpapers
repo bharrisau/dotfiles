@@ -1,0 +1,17 @@
+#!/bin/bash
+
+cd ~/Pictures/Wallpapers
+rm *.png
+curl -s 'http://www.reddit.com/r/wallpapers/top/?sort=top&t=week' \
+  | tr '"' '\n' | sed 's/https/http/' \
+  | grep imgur | tee "$$.tmp" \
+  | egrep '^(http://)?i\.imgur\.com/' \
+  | sed "s/?1//" \
+  | xargs wget -q -nc
+# egrep '^http://imgur.com/a/' "$$.tmp" \
+#   | xargs -l1 imgur_album_download
+rm "$$.tmp"
+mogrify -format png *.jpg
+mogrify -resize 1920x1200^ -gravity center -extent 1920x1200 *.png
+rm *.jpg
+rm *.png~

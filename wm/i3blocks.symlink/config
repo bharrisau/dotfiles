@@ -24,14 +24,20 @@ color=#00FF00
 interval=10
 separator=false
 
-[ethernet]
-command=/usr/libexec/i3blocks/network eth0 E
-color=#00FF00
+[wireless]
+command=[[ $(iwgetid -r) == "" ]] && echo "" || iwgetid -r
 interval=10
+color=#00FF00
 separator=false
 
-[extip]
-interval=6000
+[ethernet]
+command=/usr/libexec/i3blocks/network net0 E
+color=#00FF00
+interval=10
+#separator=false
+
+#[extip]
+#interval=6000
 
 [cpu]
 command=/usr/libexec/i3blocks/cpu
@@ -49,5 +55,5 @@ command=date '+%d %b %Y %l:%M %p %Z'
 separator=false
 
 #[time1]
-#command=TZ=Australia/Darwin date '+%l:%M %p %Z'
+#command=TZ=NZ date '+%l:%M %p %Z'
 

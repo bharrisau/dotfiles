@@ -11,6 +11,10 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+" Rid of escape
+inoremap jk <esc>
+inoremap kj <esc>
+
 set background=dark
 colorscheme solarized
 set spelllang=en_gb

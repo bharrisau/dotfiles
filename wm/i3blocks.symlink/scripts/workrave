@@ -33,18 +33,32 @@ seconds_to_readable() {
   printf "%02d:%02d\n" $m $s
 }
 
+mode=$(try "$CORE_INTERFACE.GetOperationMode")
+
 case "$BLOCK_BUTTON" in
   1)
     $(try "$CONTROL_INTERFACE.RestBreak")
     ;;
-  2)
-    mode=$(try "$CORE_INTERFACE.GetOperationMode")
+  3)
+    if [ "$mode" == "normal" ]; then
+      $(try "$CORE_INTERFACE.SetOperationMode" "quiet")
+      echo "quiet"
+      exit 0
+    else
+      $(try "$CORE_INTERFACE.SetOperationMode" "normal")
+      echo "normal"
+      exit 0
+    fi
     ;;
 esac
 
 restbreak_limit="$(try "$CONFIG_INTERFACE.GetInt" "timers/rest_break/limit" |tr -d [:blank:][:alpha:])"
 restbreak_current="$(try "$CORE_INTERFACE.GetTimerElapsed" "restbreak")"
 next_restbreak=$((restbreak_limit - restbreak_current))
+
+if [ "$mode" == "quiet" ]; then
+  echo -n "Q "
+fi
 
 echo $(seconds_to_readable $next_restbreak)
 echo ""
